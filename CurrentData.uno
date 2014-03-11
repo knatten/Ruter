@@ -12,17 +12,17 @@ namespace RuterTest
 		public List<CheckedWatch> CheckedWatches { get; private set;}
 		private int _lastUpdate = 0;
 		private static readonly int _updateInterval = 30;
-		
+
 		public CurrentData()
 		{
 			CheckedWatches = new List<CheckedWatch>();
 		}
-		
+
 		public void Update()
 		{
 			var now = DateTime.Now.Hour * 60 * 60 + DateTime.Now.Minute * 60 + DateTime.Now.Second;
 			if (_lastUpdate + _updateInterval > now)
-				return;			
+				return;
 			_lastUpdate = now;
 			RemoveInactiveWatches();
 			AddActiveWatches();
@@ -32,7 +32,7 @@ namespace RuterTest
 			}
 			debug_log CheckedWatches.Count;
 		}
-		
+
 		private void RemoveInactiveWatches()
 		{
 			var removing = new List<CheckedWatch>();
@@ -49,7 +49,7 @@ namespace RuterTest
 				CheckedWatches.Remove(checkedWatch);
 			}
 		}
-		
+
 		private void AddActiveWatches()
 		{
 			foreach (var watch in Configuration.ActiveWatches)
@@ -57,7 +57,7 @@ namespace RuterTest
 				AddWatchIfIsntThere(watch);
 			}
 		}
-		
+
 		private void AddWatchIfIsntThere(Watch watch)
 		{
 			foreach (var checkedWatch in CheckedWatches)

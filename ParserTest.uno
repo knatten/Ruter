@@ -15,10 +15,12 @@ namespace RuterTest
 		{
 			var parsed = Parser.Parse(TestData.MosesvingenFiveDepartures);
 			assert 5 == parsed.Count;
-			assert 1394532485 == parsed[0].ExpectedDeparture;
+			var expectedDeparture1 = new TimePoint(11, 08);
+			assert expectedDeparture1.Equals(parsed[0].ExpectedDeparture);
 			assert "842" == parsed[0].LineName;
-			assert 1394532540 == parsed[1].ExpectedDeparture;
+			var expectedDeparture2 = new TimePoint(11, 09);
 			assert "401" == parsed[1].LineName;
+			assert expectedDeparture2.Equals(parsed[1].ExpectedDeparture);
 		}
 	}
 }

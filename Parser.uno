@@ -8,8 +8,6 @@ using Experimental.Data;
 
 namespace RuterTest
 {
-
-
 	public static class Parser
 	{
 		public static List<Departure> Parse(string jsonContent)
@@ -20,7 +18,11 @@ namespace RuterTest
 			{
 				if (json[i].JsonDataType != JsonDataType.Object)
 					break;
-				var departure = int.Parse(json[i]["ExpectedDepartureTime"].AsString().Substring(6,10));
+				var departureString = json[i]["ExpectedDepartureTime"].AsString();
+				var departure = TimePoint.FromUnix(
+					int.Parse(departureString.Substring(6,10)),
+					int.Parse(departureString.Substring(20,4))
+				);
 				var lineName = json[i]["PublishedLineName"].AsString();
 				departures.Add(new Departure(departure, lineName));
 			}

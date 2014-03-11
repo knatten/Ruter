@@ -21,6 +21,8 @@ namespace RuterTest
 			registry.Add(new TimePointTest().ConvertsFromDateTime, "TimePointTest.ConvertsFromDateTime");
 			registry.Add(new TimePointTest().AddsMinutes, "TimePointTest.AddsMinutes");
 			registry.Add(new TimePointTest().AddsMinutesPastHour, "TimePointTest.AddsMinutesPastHour");
+			registry.Add(new TimePointTest().ConvertsFromUnix, "TimePointTest.ConvertsFromUnix");
+			registry.Add(new TimePointTest().ConvertsFromUnixWithOffset, "TimePointTest.ConvertsFromUnixWithOffset");
 			registry.Add(new IntervalTest().TooEarly_IsNotActive, "IntervalTest.TooEarly_IsNotActive");
 			registry.Add(new IntervalTest().TooLate_IsNotActive, "IntervalTest.TooLate_IsNotActive");
 			registry.Add(new IntervalTest().OnTime_IsActive, "IntervalTest.OnTime_IsActive");

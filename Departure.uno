@@ -9,10 +9,10 @@ namespace RuterTest
 {
 	public struct Departure
 	{
-		public readonly int ExpectedDeparture;
+		public readonly TimePoint ExpectedDeparture;
 		public readonly string LineName;
 
-		public Departure(int expectedDeparture, string lineName)
+		public Departure(TimePoint expectedDeparture, string lineName)
 		{
 			ExpectedDeparture = expectedDeparture;
 			LineName = lineName;
