@@ -11,11 +11,13 @@ namespace RuterTest
 	{
 		public readonly TimePoint ExpectedDeparture;
 		public readonly string LineName;
+		public readonly string Destination;
 
-		public Departure(TimePoint expectedDeparture, string lineName)
+		public Departure(TimePoint expectedDeparture, string lineName, string destination)
 		{
 			ExpectedDeparture = expectedDeparture;
 			LineName = lineName;
+			Destination = destination;
 		}
 	}
 }
