@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Project>
+  <References>
+    <PackageReference Name="Experimental.Data" Version="0.1.0.0" />
+    <PackageReference Name="Experimental.Net.Http" Version="0.1.0.0" />
+    <PackageReference Name="Uno.Content.Utilities" />
+    <PackageReference Name="Uno.Scenes" />
+    <PackageReference Name="Uno.Testing" Version="0.1.0.0" />
+  </References>
+  <Files>
+    <SourceFile Path="App.uno" />
+    <SourceFile Path="Configuration.uno" />
+    <SourceFile Path="TravelData.uno" />
+    <SourceFile Path="Departure.uno" />
+    <SourceFile Path="Parser.uno" />
+    <SourceFile Path="ParserTest.uno" />
+    <SourceFile Path="TestData.uno" />
+    <SourceFile Path="TestSetup.uno" />
+    <SourceFile Path="TravelDataTest.uno" />
+  </Files>
+</Project>
