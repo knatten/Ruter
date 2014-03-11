@@ -66,10 +66,15 @@ namespace RuterTest
 			var minutesOffset = offset % 100;
 			return new TimePoint(utc.Hours + hoursOffset, utc.Minutes + minutesOffset);
 		}
-		
+
 		public override string ToString()
 		{
-			return Hours.ToString() + ":" + Minutes.ToString();
+			return TwoDigits(Hours) + ":" + TwoDigits(Minutes);
+		}
+		
+		private static string TwoDigits(int i)
+		{
+			return (i < 10 ? "0" : "") + i.ToString();
 		}
 	}
 }

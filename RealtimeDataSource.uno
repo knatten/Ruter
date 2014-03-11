@@ -12,15 +12,22 @@ namespace RuterTest
 	public class RealtimeDataSource
 	{
 		private CheckedWatch _checkedWatch;
-		
+		//HttpClient httpClient = new HttpClient();
+
 		public RealtimeDataSource(CheckedWatch checkedWatch)
 		{
 			_checkedWatch = checkedWatch;
+			//httpClient.OnError += OnError;
+		}
+
+		private void OnError(string error)
+		{
+			debug_log error;
 		}
 		
 		public void Update()
 		{
-			var httpClient = new HttpClient();
+			HttpClient httpClient = new HttpClient();
 			var tmpWatch = _checkedWatch.Watch;
 			var tmpStop = tmpWatch.Stop;
 			var tmpId = tmpStop.StopId;
