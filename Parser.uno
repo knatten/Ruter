@@ -24,7 +24,7 @@ namespace RuterTest
 					int.Parse(departureString.Substring(20,4))
 				);
 				var lineName = json[i]["PublishedLineName"].AsString();
-				var destination = json[i]["DestinationDisplay"].AsString();
+				var destination = json[i]["DestinationName"].AsString();
 				departures.Add(new Departure(departure, lineName, destination));
 			}
 			return departures;

@@ -24,7 +24,7 @@ namespace RuterTest
 		{
 			debug_log error;
 		}
-		
+
 		public void Update()
 		{
 			HttpClient httpClient = new HttpClient();
