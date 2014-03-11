@@ -9,13 +9,19 @@
   </References>
   <Files>
     <SourceFile Path="App.uno" />
+    <SourceFile Path="CheckedWatch.uno" />
     <SourceFile Path="Configuration.uno" />
+    <SourceFile Path="CurrentData.uno" />
+    <SourceFile Path="RealtimeDataSource.uno" />
     <SourceFile Path="TravelData.uno" />
     <SourceFile Path="Departure.uno" />
+    <SourceFile Path="SystemTest.uno" />
     <SourceFile Path="Parser.uno" />
     <SourceFile Path="ParserTest.uno" />
     <SourceFile Path="TestData.uno" />
     <SourceFile Path="TestSetup.uno" />
+    <SourceFile Path="TimePoint.uno" />
+    <SourceFile Path="TimePointTest.uno" />
     <SourceFile Path="TravelDataTest.uno" />
   </Files>
 </Project>

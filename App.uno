@@ -10,7 +10,17 @@ using Experimental.Data;
 
 namespace RuterTest
 {
-    public partial class TestSetup : Uno.Application
+	public class App : Uno.Application
+	{
+		CurrentData data = new CurrentData();
+		
+		public override void Update()
+		{
+			data.Update();
+		}
+	}
+	
+    public partial class TestSetup// : Uno.Application
     {
 		public TestSetup()
 		{
@@ -26,10 +36,5 @@ namespace RuterTest
 			var json = JsonReader.Parse(content);
 			debug_log json;
 		}
-
-        public override void Draw()
-        {
-			var time = DateTime.Now;
-        }
     }
 }

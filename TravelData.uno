@@ -7,36 +7,6 @@ using Uno.Content.Models;
 
 namespace RuterTest
 {
-	public struct TimePoint
-	{
-		public readonly int Hours;
-		public readonly int Minutes;
-		
-		public TimePoint(int hours, int minutes)
-		{
-			Hours = hours;
-			Minutes = minutes;
-		}
-		
-		public static bool operator <= (TimePoint lhs, TimePoint rhs)
-		{
-			if (lhs.Hours < rhs.Hours)
-				return true;
-			if (lhs.Hours == rhs.Hours && lhs.Minutes <= rhs.Minutes)
-				return true;
-			return false;
-		}
-				
-		public static bool operator >= (TimePoint lhs, TimePoint rhs)
-		{
-			if (lhs.Hours > rhs.Hours)
-				return true;
-			if (lhs.Hours == rhs.Hours && lhs.Minutes >= rhs.Minutes)
-				return true;
-			return false;
-		}
-	}
-	
 	public struct Interval
 	{
 		public readonly TimePoint Start;
@@ -56,7 +26,7 @@ namespace RuterTest
 				
 		public bool ActiveAt(DateTime time)
 		{
-			return ActiveAt(new TimePoint(time.Hour, time.Minute));
+			return ActiveAt(TimePoint.From(time));
 		}
 				
 		public bool ActiveAt(TimePoint now)

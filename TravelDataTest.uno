@@ -8,25 +8,6 @@ using Uno.Testing;
 
 namespace RuterTest
 {
-	public class TimePointTest
-	{
-		[Test]
-		public void OperatorLessOrEqual()
-		{
-			assert new TimePoint(3, 5) <= new TimePoint(3,6);
-			assert new TimePoint(3, 5) <= new TimePoint(3,5);
-			assert false == (new TimePoint(3, 5) <= new TimePoint(3,4));
-		}
-		
-		[Test]
-		public void OperatorGreaterOrEqual()
-		{
-			assert new TimePoint(3, 5) >= new TimePoint(3,4);
-			assert new TimePoint(3, 5) >= new TimePoint(3,5);
-			assert false == (new TimePoint(3, 5) >= new TimePoint(3,6));
-		}
-	}
-	
 	public class IntervalTest
 	{
  		private Interval interval = new Interval(
