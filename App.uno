@@ -17,14 +17,28 @@ namespace RuterTest
 		Scene scene = new Scene() {
 			ClearColor = float4(0, 0, 0, 1),
 		};
+		
+		TestSetup testSetup = new TestSetup();
+		bool testMode = true;
 
+		public App()
+		{
+			if (testMode)
+				testSetup.SetupTestRunner();
+		}
+		
 		public override void Update()
 		{
-			data.Update();
+			if (testMode)
+				testSetup.Update();
+			else
+				data.Update();
 		}
 
 		public override void Draw()
 		{
+			if (testMode)
+				return;
 			var mainPanel = new StackPanel()
 			{
 				Orientation = Orientation.Horizontal,
@@ -86,12 +100,4 @@ namespace RuterTest
 		}
 
 	}
-
-    public partial class TestSetup// : Uno.Application
-    {
-		public TestSetup()
-		{
-			SetupTestRunner();
-		}
-    }
 }

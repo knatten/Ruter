@@ -1,2 +1,18 @@
-Stations that report all lines
 Passing midnight (all over)
+Filter by interesting line names
+Message when no current routes
+Clean up code
+Make tutorial
+Brush up design?
+
+Things that need fixing asap:
+-Http on Android
+-Persistence of some kind
+-Iterating over lists of unknown size in Json
+-DateTime arithmetic in JS
+-Uno UI bugs
+-Tutorials, incl. styling
+
+Other questions:
+-Why do I need to restart my computer after installing?
+-Why does the installer take so long time

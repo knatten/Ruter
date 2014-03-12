@@ -71,7 +71,7 @@ namespace RuterTest
 		{
 			return TwoDigits(Hours) + ":" + TwoDigits(Minutes);
 		}
-		
+
 		private static string TwoDigits(int i)
 		{
 			return (i < 10 ? "0" : "") + i.ToString();
