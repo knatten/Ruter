@@ -11,13 +11,13 @@ namespace RuterTest
 	{
 		public readonly Watch Watch;
 		public List<Departure> Departures {get; set;}
-		private readonly RealtimeDataSource _dataSource;
+		private readonly IDataSource _dataSource;
 
 		public CheckedWatch(Watch watch)
 		{
 			Watch = watch;
 			Departures = new List<Departure>();
-			_dataSource = new RealtimeDataSource(this);
+			_dataSource = DataSourceFactory.Create(this);
 		}
 
 		public void Update()

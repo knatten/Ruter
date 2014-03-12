@@ -9,7 +9,7 @@ using Experimental.Data;
 
 namespace RuterTest
 {
-	public class RealtimeDataSource
+	public class RealtimeDataSource : IDataSource
 	{
 		private CheckedWatch _checkedWatch;
 

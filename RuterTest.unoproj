@@ -9,6 +9,8 @@
     <PackageReference Name="Uno.UI" Version="0.1.0.0" />
   </References>
   <Files>
+    <SourceFile Path="Tests/MockTravelData/MockData.uno" />
+    <SourceFile Path="Tests/MockDataSource.uno" />
     <SourceFile Path="Tests/ParserTest.uno" />
     <SourceFile Path="Tests/TestData.uno" />
     <SourceFile Path="Tests/TestSetup.uno" />
@@ -18,8 +20,10 @@
     <SourceFile Path="CheckedWatch.uno" />
     <SourceFile Path="Configuration.uno" />
     <SourceFile Path="CurrentData.uno" />
+    <SourceFile Path="DataSourceFactory.uno" />
     <SourceFile Path="Departure.uno" />
     <SourceFile Path="GUI.uno" />
+    <SourceFile Path="IDataSource.uno" />
     <SourceFile Path="Interval.uno" />
     <SourceFile Path="Parser.uno" />
     <SourceFile Path="RealtimeDataSource.uno" />

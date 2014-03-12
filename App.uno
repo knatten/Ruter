@@ -12,28 +12,31 @@ namespace RuterTest
 {
 	public class App : Uno.Application
 	{
-		CurrentData data = new CurrentData();
-		TestSetup testSetup = new TestSetup();
-		bool testMode = false;
+		private readonly CurrentData _data;
+		private readonly TestSetup _testSetup = new TestSetup();
+		private bool _testMode = false;
+		private bool _useMocks = false;
 
 		public App()
 		{
-			if (testMode)
-				testSetup.SetupTestRunner();
+ 			if (_testMode)
+ 				_testSetup.SetupTestRunner();
+			DataSourceFactory.Mock = _useMocks;
+			_data = new CurrentData();
 		}
 
 		public override void Update()
 		{
-			if (testMode)
-				testSetup.Update();
+			if (_testMode)
+				_testSetup.Update();
 			else
-				data.Update();
+				_data.Update();
 		}
 
 		public override void Draw()
 		{
-			if (!testMode)
-				GUI.CreateScene(data).Draw();
+			if (!_testMode)
+				GUI.CreateScene(_data).Draw();
 		}
 	}
 }
