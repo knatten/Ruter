@@ -30,7 +30,6 @@ namespace RuterTest
 			{
 				checkedWatch.Update();
 			}
-			debug_log CheckedWatches.Count;
 		}
 
 		private void RemoveInactiveWatches()

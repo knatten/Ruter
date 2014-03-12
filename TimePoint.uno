@@ -38,10 +38,8 @@ namespace RuterTest
 
 		public TimePoint AddMinutes(int minutes)
 		{
-			var newHours = this.Hours;
-			var newMinutes = this.Minutes;
-			newMinutes += minutes % 60;
-			newHours += minutes / 60;
+			var newHours = this.Hours + minutes / 60;
+			var newMinutes = this.Minutes + minutes % 60;
 			return new TimePoint(newHours, newMinutes);
 		}
 

@@ -14,7 +14,7 @@ namespace RuterTest
 		{
 			var json = JsonReader.Parse(jsonContent);
 			var departures = new List<Departure>();
-			for (int i = 0 ; i < 30; ++i)
+			for (int i = 0 ; i < 100; ++i) //TODO need better support for lists in json
 			{
 				if (json[i].JsonDataType != JsonDataType.Object)
 					break;

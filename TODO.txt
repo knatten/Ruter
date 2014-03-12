@@ -4,6 +4,7 @@ Message when no current routes
 Clean up code
 Make tutorial
 Brush up design?
+Display data age
 
 Things that need fixing asap:
 -Http on Android

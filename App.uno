@@ -17,16 +17,16 @@ namespace RuterTest
 		Scene scene = new Scene() {
 			ClearColor = float4(0, 0, 0, 1),
 		};
-		
+
 		TestSetup testSetup = new TestSetup();
-		bool testMode = true;
+		bool testMode = false;
 
 		public App()
 		{
 			if (testMode)
 				testSetup.SetupTestRunner();
 		}
-		
+
 		public override void Update()
 		{
 			if (testMode)

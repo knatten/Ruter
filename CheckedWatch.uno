@@ -10,8 +10,8 @@ namespace RuterTest
 	public class CheckedWatch
 	{
 		public readonly Watch Watch;
-		public List<Departure> Departures {get; private set;}
-		private RealtimeDataSource _dataSource;
+		public List<Departure> Departures {get; set;}
+		private readonly RealtimeDataSource _dataSource;
 
 		public CheckedWatch(Watch watch)
 		{
@@ -23,19 +23,6 @@ namespace RuterTest
 		public void Update()
 		{
 			_dataSource.Update();
-		}
-
-		public void SetDepartures(List<Departure> departures)
-		{
-			var tmpWatch = Watch;
-			var tmpStop = tmpWatch.Stop;
-			debug_log "Setting departures for " + tmpStop.Name;
-			Departures = departures;
-			foreach (var dep in Departures)
-			{
-				var expected = dep.ExpectedDeparture;
-				debug_log expected.ToString() + " " + dep.LineName;
-			}
 		}
 	}
 }

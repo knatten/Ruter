@@ -12,12 +12,10 @@ namespace RuterTest
 	public class RealtimeDataSource
 	{
 		private CheckedWatch _checkedWatch;
-		//HttpClient httpClient = new HttpClient();
 
 		public RealtimeDataSource(CheckedWatch checkedWatch)
 		{
 			_checkedWatch = checkedWatch;
-			//httpClient.OnError += OnError;
 		}
 
 		private void OnError(string error)
@@ -32,15 +30,13 @@ namespace RuterTest
 			var tmpStop = tmpWatch.Stop;
 			var tmpId = tmpStop.StopId;
             var query = "http://reis.ruter.no/reisrest/realtime/getrealtimedata/" + tmpId;
-            debug_log query;
 			httpClient.GetStringAsync(query, Callback);
 		}
 
 		private void Callback(string content)
 		{
-			debug_log DateTime.Now;
 			var departures = Parser.Parse(content);
-			_checkedWatch.SetDepartures(departures);
+			_checkedWatch.Departures = departures;
 		}
 	}
 }
