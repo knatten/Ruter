@@ -5,9 +5,81 @@ using Uno.Scenes;
 using Uno.Content;
 using Uno.Content.Models;
 using Uno.UI;
+using Uno.UI.Primitives;
+using Uno.Styling;
+using Uno.Content.Fonts;
 
 namespace RuterTest
 {
+	public class Background : Image
+	{
+		public static texture2D tex = import Texture2D("Assets/background.jpg");
+		public Background()
+		{
+			Texture = tex;
+		}
+	}
+	
+	public class StopImage : Image
+	{
+		public static texture2D tex = import Texture2D("Assets/location.png");
+		public StopImage()
+		{
+			Texture = tex;
+			Width = 25;
+			Height = 25;
+			Color = float4(1f);
+		}
+	}
+	
+	public class BusImage : Image
+	{
+		public static texture2D tex = import Texture2D("Assets/bus.png");
+		public BusImage()
+		{
+			Texture = tex;
+			Width = 25;
+			Height = 25;
+			Color = float4(1f);
+		}
+	}
+		
+	public class ClockImage : Image
+	{
+		public static texture2D tex = import Texture2D("Assets/clock.png");
+		public ClockImage()
+		{
+			Texture = tex;
+			Width = 25;
+			Height = 25;
+			Color = float4(1f);
+		}
+	}
+	
+	public class DestinationBox : TextBox
+	{
+	}
+	
+	public class StopNameBox : TextBox
+	{
+	}
+		
+	public class LineNameBox : TextBox
+	{
+	}
+			
+	public class DepartureTimeBox : TextBox
+	{
+	}
+	
+	public class StopNamePanel : DockPanel
+	{
+	}
+	
+	public class DeparturePanel : DockPanel
+	{
+	}
+	
 	public class GUI
 	{
 		private Scene _scene;
@@ -22,8 +94,10 @@ namespace RuterTest
 			_scene = new Scene() {
 				ClearColor = float4(0, 0, 0, 1),
 			};
+			var background = new Background();
+			_scene.Children.Add(background);
 			_scene.Children.Add(CreateMainPanel(data));
-			var style = new DefaultStyle();
+			var style = new GangnamStyle();
 			_scene.Style = style;
 		}
 
@@ -46,7 +120,7 @@ namespace RuterTest
 			var tmpWatch = watch.Watch;
 			var tmpStop = tmpWatch.Stop;
 
-			watchPanel.Children.Add(CreateStopNameBox(tmpStop));
+			watchPanel.Children.Add(CreateStopNamePanel(tmpStop));
 			foreach (var departure in watch.Departures)
 			{
 				watchPanel.Children.Add(CreateDeparturePanel(departure, tmpStop));
@@ -54,62 +128,67 @@ namespace RuterTest
 			return watchPanel;
 		}
 
+		private static DockPanel CreateStopNamePanel(Stop stop)
+		{
+			var stopNamePanel = new StopNamePanel()
+			{
+				Width = 300,
+			};
+			stopNamePanel.Children.Add(new StopImage());
+			stopNamePanel.Children.Add(CreateStopNameBox(stop));
+			return stopNamePanel;
+		}
+		
 		private static TextBox CreateStopNameBox(Stop stop)
 		{
-			var stopNameBox = new TextBox()
+			var stopNameBox = new StopNameBox()
 			{
-				Width = stop.Name.Length * 10,
-				FontSize = 15,
-				Text = stop.Name,
+				Text = stop.Name.ToUpper(),
 			};
-			stopNameBox.SetValue(Element.ColorProperty, float4(0f, 0f, 0.3f, 1f));
 			return stopNameBox;
 		}
 
 		private static DockPanel CreateDeparturePanel(Departure departure, Stop stop)
 		{
-			var departurePanel = new DockPanel();
+			var departurePanel = new DeparturePanel()
+			{
+				Width = 300,
+			};
 			departurePanel.Children.Add(CreateDestinationBox(departure, stop));
+			departurePanel.Children.Add(new BusImage());
 			departurePanel.Children.Add(CreateLineNameBox(departure, stop));
+			departurePanel.Children.Add(new ClockImage());
 			departurePanel.Children.Add(CreateDepartureTimeBox(departure));
 			return departurePanel;
 		}
 
 		private static TextBox CreateDestinationBox(Departure departure, Stop stop)
 		{
-			var destinationBox = new TextBox()
+			var destinationBox = new DestinationBox()
 			{
-				Width = stop.Name.Length * 10,
-				FontSize = 15,
-				Text = departure.Destination,
+				Text = departure.Destination.ToUpper(),
 			};
-			destinationBox.SetValue(Element.ForegroundColorProperty, float4(1f, 0.7f, 0f, 1f));
 			destinationBox.SetValue(DockPanel.DockProperty, Dock.Top);
-			destinationBox.SetValue(Element.MarginProperty, float4(6, 6, 6, 0));
 			return destinationBox;
 		}
 
 		private static TextBox CreateLineNameBox(Departure departure, Stop stop)
 		{
-			var lineNameBox = new TextBox()
+			var lineNameBox = new LineNameBox()
 			{
-				Width = stop.Name.Length * 4,
-				FontSize = 15,
+				Width = 160,
 				Text = departure.LineName,
 			};
-			lineNameBox.SetValue(Element.MarginProperty, float4(6, 0, 0, 0));
 			return lineNameBox;
 		}
 
 		private static TextBox CreateDepartureTimeBox(Departure departure)
 		{
-			var tmpDeparture= departure.ExpectedDeparture;
-			var timeBox = new TextBox()
+			var tmpDeparture = departure.ExpectedDeparture;
+			var timeBox = new DepartureTimeBox()
 			{
-				FontSize = 15,
 				Text = tmpDeparture.ToString(),
 			};
-			timeBox.SetValue(Element.MarginProperty, float4(0, 0, 6, 0));
 			return timeBox;
 		}
 
