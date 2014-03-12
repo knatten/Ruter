@@ -60,7 +60,11 @@ namespace RuterTest
 			}
 			else if (obj is BusImage || obj is ClockImage)
 			{
-				if (property == Element.MarginProperty) return float4(0, 5, 0, 0);
+				if (property == Element.MarginProperty) return float4(5, 5, 0, 0);
+			}
+			else if (obj is StopImage)
+			{
+				if (property == Element.MarginProperty) return float4(5, 0, 0, 0);
 			}
 			else if (obj is StackPanel)
 			{

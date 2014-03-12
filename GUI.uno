@@ -19,7 +19,7 @@ namespace RuterTest
 			Texture = tex;
 		}
 	}
-	
+
 	public class StopImage : Image
 	{
 		public static texture2D tex = import Texture2D("Assets/location.png");
@@ -31,7 +31,7 @@ namespace RuterTest
 			Color = float4(1f);
 		}
 	}
-	
+
 	public class BusImage : Image
 	{
 		public static texture2D tex = import Texture2D("Assets/bus.png");
@@ -43,7 +43,7 @@ namespace RuterTest
 			Color = float4(1f);
 		}
 	}
-		
+
 	public class ClockImage : Image
 	{
 		public static texture2D tex = import Texture2D("Assets/clock.png");
@@ -55,40 +55,40 @@ namespace RuterTest
 			Color = float4(1f);
 		}
 	}
-	
+
 	public class DestinationBox : TextBox
 	{
 	}
-	
+
 	public class StopNameBox : TextBox
 	{
 	}
-		
+
 	public class LineNameBox : TextBox
 	{
 	}
-			
+
 	public class DepartureTimeBox : TextBox
 	{
 	}
-	
+
 	public class StopNamePanel : DockPanel
 	{
 	}
-	
+
 	public class DeparturePanel : DockPanel
 	{
 	}
-	
+
 	public class GUI
 	{
 		private Scene _scene;
-		
+
 		public void Draw()
 		{
 			_scene.Draw();
 		}
-		
+
 		public void UpdateScene(CurrentData data)
 		{
 			_scene = new Scene() {
@@ -138,7 +138,7 @@ namespace RuterTest
 			stopNamePanel.Children.Add(CreateStopNameBox(stop));
 			return stopNamePanel;
 		}
-		
+
 		private static TextBox CreateStopNameBox(Stop stop)
 		{
 			var stopNameBox = new StopNameBox()
@@ -176,7 +176,7 @@ namespace RuterTest
 		{
 			var lineNameBox = new LineNameBox()
 			{
-				Width = 160,
+				Width = 140,
 				Text = departure.LineName,
 			};
 			return lineNameBox;

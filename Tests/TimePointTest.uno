@@ -51,19 +51,26 @@ namespace RuterTest
 			actual = actual.AddMinutes(70);
 			assert expected.Equals(actual);
 		}
-		
+
 		[Test]
 		public void ConvertsFromUnix()
 		{
 			var expected = new TimePoint(10, 08);
 			assert expected.Equals(TimePoint.FromUnix(1394532485));
 		}
-		
+
 		[Test]
 		public void ConvertsFromUnixWithOffset()
 		{
 			var expected = new TimePoint(11, 18);
 			assert expected.Equals(TimePoint.FromUnix(1394532485, 0110));
+		}
+		
+		[Test]
+		public void ToString()
+		{
+			assert "13:37" == new TimePoint(13, 37).ToString();
+			assert "00:00" == new TimePoint(0, 0).ToString();
 		}
 	}
 }
