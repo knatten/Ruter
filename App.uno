@@ -16,6 +16,7 @@ namespace RuterTest
 		private readonly TestSetup _testSetup = new TestSetup();
 		private bool _testMode = false;
 		private bool _useMocks = false;
+		private GUI _gui;
 
 		public App()
 		{
@@ -23,20 +24,28 @@ namespace RuterTest
  				_testSetup.SetupTestRunner();
 			DataSourceFactory.Mock = _useMocks;
 			_data = new CurrentData();
+			_gui = new GUI();
 		}
 
 		public override void Update()
 		{
 			if (_testMode)
+			{
 				_testSetup.Update();
+			}
 			else
+			{
 				_data.Update();
+				_gui.UpdateScene(_data);
+			}
 		}
 
 		public override void Draw()
 		{
 			if (!_testMode)
-				GUI.CreateScene(_data).Draw();
+			{
+				_gui.Draw();
+			}
 		}
 	}
 }

@@ -8,19 +8,25 @@ using Uno.UI;
 
 namespace RuterTest
 {
-	public static class GUI
+	public class GUI
 	{
-		public static Scene CreateScene(CurrentData data)
+		private Scene _scene;
+		
+		public void Draw()
 		{
-			Scene scene = new Scene() {
-				ClearColor = float4(0, 0, 0, 1),
-			};
-			scene.Children.Add(CreateMainPanel(data));
-			var style = new DefaultStyle();
-			scene.Style = style;
-			return scene;
+			_scene.Draw();
 		}
 		
+		public void UpdateScene(CurrentData data)
+		{
+			_scene = new Scene() {
+				ClearColor = float4(0, 0, 0, 1),
+			};
+			_scene.Children.Add(CreateMainPanel(data));
+			var style = new DefaultStyle();
+			_scene.Style = style;
+		}
+
 		private static StackPanel CreateMainPanel(CurrentData data)
 		{
 			var mainPanel = new StackPanel()
@@ -33,7 +39,7 @@ namespace RuterTest
 			}
 			return mainPanel;
 		}
-		
+
 		private static StackPanel CreateWatchPanel(CheckedWatch watch)
 		{
 			var watchPanel = new StackPanel();
@@ -47,7 +53,7 @@ namespace RuterTest
 			}
 			return watchPanel;
 		}
-		
+
 		private static TextBox CreateStopNameBox(Stop stop)
 		{
 			var stopNameBox = new TextBox()
@@ -59,7 +65,7 @@ namespace RuterTest
 			stopNameBox.SetValue(Element.ColorProperty, float4(0f, 0f, 0.3f, 1f));
 			return stopNameBox;
 		}
-		
+
 		private static DockPanel CreateDeparturePanel(Departure departure, Stop stop)
 		{
 			var departurePanel = new DockPanel();
@@ -68,7 +74,7 @@ namespace RuterTest
 			departurePanel.Children.Add(CreateDepartureTimeBox(departure));
 			return departurePanel;
 		}
-		
+
 		private static TextBox CreateDestinationBox(Departure departure, Stop stop)
 		{
 			var destinationBox = new TextBox()
@@ -82,7 +88,7 @@ namespace RuterTest
 			destinationBox.SetValue(Element.MarginProperty, float4(6, 6, 6, 0));
 			return destinationBox;
 		}
-		
+
 		private static TextBox CreateLineNameBox(Departure departure, Stop stop)
 		{
 			var lineNameBox = new TextBox()
@@ -94,7 +100,7 @@ namespace RuterTest
 			lineNameBox.SetValue(Element.MarginProperty, float4(6, 0, 0, 0));
 			return lineNameBox;
 		}
-		
+
 		private static TextBox CreateDepartureTimeBox(Departure departure)
 		{
 			var tmpDeparture= departure.ExpectedDeparture;
