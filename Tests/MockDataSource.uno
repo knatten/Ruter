@@ -22,7 +22,7 @@ namespace RuterTest
 			var tmpStop = tmpWatch.Stop;
 			var data = MockData.Data[tmpStop.StopId];
 			var departures = Parser.Parse(data);
-			_checkedWatch.Departures = departures;
+			_checkedWatch.OfferDepartures(departures);
 		}
 	}
 }

@@ -36,7 +36,7 @@ namespace RuterTest
 		private void Callback(string content)
 		{
 			var departures = Parser.Parse(content);
-			_checkedWatch.Departures = departures;
+			_checkedWatch.OfferDepartures(departures);
 		}
 	}
 }
