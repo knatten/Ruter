@@ -25,7 +25,7 @@ namespace RuterTest
 				var active = new List<Watch>();
 				foreach (var watch in Watches)
 				{
-					if (watch.Active)
+					if (watch.Active || true)
 					{
 						active.Add(watch);
 					}

@@ -19,6 +19,7 @@
     <SourceFile Path="Configuration.uno" />
     <SourceFile Path="CurrentData.uno" />
     <SourceFile Path="Departure.uno" />
+    <SourceFile Path="GUI.uno" />
     <SourceFile Path="Interval.uno" />
     <SourceFile Path="Parser.uno" />
     <SourceFile Path="RealtimeDataSource.uno" />
