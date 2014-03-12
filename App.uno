@@ -15,7 +15,7 @@ namespace RuterTest
 		private readonly CurrentData _data;
 		private readonly TestSetup _testSetup = new TestSetup();
 		private bool _testMode = false;
-		private bool _useMocks = false;
+		private bool _useMocks = true;
 
 		public App()
 		{
