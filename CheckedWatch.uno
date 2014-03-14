@@ -11,6 +11,7 @@ namespace RuterTest
 	{
 		public readonly Watch Watch;
 		public List<Departure> Departures {get; private set;}
+		public event Action Changed;
 
 		private readonly IDataSource _dataSource;
 
@@ -25,7 +26,7 @@ namespace RuterTest
 		{
 			_dataSource.Update();
 		}
-		
+
 		public void OfferDepartures(List<Departure> departures)
 		{
 			Departures.Clear();
@@ -41,6 +42,8 @@ namespace RuterTest
 				if (acceptedLines.Contains(departure.LineName))
 					Departures.Add(departure);
 			}
+			if (Changed != null)
+				Changed();
 		}
 	}
 }

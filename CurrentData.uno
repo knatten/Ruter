@@ -10,6 +10,8 @@ namespace RuterTest
 	public class CurrentData
 	{
 		public List<CheckedWatch> CheckedWatches { get; private set;}
+		public event Action Changed;
+		
 		private int _lastUpdate = 0;
 		private static readonly int _updateInterval = 30;
 
@@ -30,6 +32,7 @@ namespace RuterTest
 			{
 				checkedWatch.Update();
 			}
+			HandleChanged();
 		}
 
 		private void RemoveInactiveWatches()
@@ -67,7 +70,15 @@ namespace RuterTest
 					return;
 				}
 			}
-			CheckedWatches.Add(new CheckedWatch(watch));
+			var newCheckedWatch = new CheckedWatch(watch);
+			newCheckedWatch.Changed += HandleChanged;
+			CheckedWatches.Add(newCheckedWatch);
+		}
+		
+		public void HandleChanged()
+		{
+			if (Changed != null)
+				Changed();
 		}
 	}
 }

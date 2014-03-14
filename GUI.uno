@@ -83,20 +83,26 @@ namespace RuterTest
 	public class GUI
 	{
 		private Scene _scene;
+		private readonly CurrentData _data;
 
+		public GUI(CurrentData data)
+		{
+			_data = data;
+		}
+		
 		public void Draw()
 		{
 			_scene.Draw();
 		}
 
-		public void UpdateScene(CurrentData data)
+		public void Update()
 		{
 			_scene = new Scene() {
 				ClearColor = float4(0, 0, 0, 1),
 			};
 			var background = new Background();
 			_scene.Children.Add(background);
-			_scene.Children.Add(CreateMainPanel(data));
+			_scene.Children.Add(CreateMainPanel(_data));
 			var style = new GangnamStyle();
 			_scene.Style = style;
 		}

@@ -24,7 +24,8 @@ namespace RuterTest
  				_testSetup.SetupTestRunner();
 			DataSourceFactory.Mock = _useMocks;
 			_data = new CurrentData();
-			_gui = new GUI();
+			_data.Changed += HandleChanged;
+			_gui = new GUI(_data);
 		}
 
 		public override void Update()
@@ -36,7 +37,6 @@ namespace RuterTest
 			else
 			{
 				_data.Update();
-				_gui.UpdateScene(_data);
 			}
 		}
 
@@ -46,6 +46,11 @@ namespace RuterTest
 			{
 				_gui.Draw();
 			}
+		}
+		
+		public void HandleChanged()
+		{
+			_gui.Update();
 		}
 	}
 }
