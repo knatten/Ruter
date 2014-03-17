@@ -46,10 +46,10 @@ namespace RuterTest
 				_gui.Draw();
 			}
 		}
-		
+
 		public void HandleChanged()
 		{
-			_gui.Update();
+			_gui.UpdateData();
 		}
 	}
 }
