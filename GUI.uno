@@ -84,18 +84,23 @@ namespace RuterTest
 	{
 		private Scene _scene;
 		private readonly CurrentData _data;
+		private float2 _originalPointerPos = float2(-1);
+		private float2 _originalPanelPos;
 
 		public GUI(CurrentData data)
 		{
 			_data = data;
+			Uno.Application.Current.Window.PointerDown += OnPointerDown;
+			Uno.Application.Current.Window.PointerUp += OnPointerUp;
+			Uno.Application.Current.Window.PointerMove += OnPointerMove;
 		}
-		
+
 		public void Draw()
 		{
 			_scene.Draw();
 		}
 
-		public void Update()
+		public void UpdateData()
 		{
 			_scene = new Scene() {
 				ClearColor = float4(0, 0, 0, 1),
@@ -117,6 +122,10 @@ namespace RuterTest
 			{
 				mainPanel.Children.Add(CreateWatchPanel(watch));
 			}
+			if (data.CheckedWatches.Count == 0)
+			{
+				mainPanel.Children.Add(CreateNowatchesPanel());
+			}
 			return mainPanel;
 		}
 
@@ -131,6 +140,22 @@ namespace RuterTest
 			{
 				watchPanel.Children.Add(CreateDeparturePanel(departure, tmpStop));
 			}
+			if (watch.Departures.Count == 0)
+			{
+				watchPanel.Children.Add(CreateNoDeparturesPanel());
+			}
+			return watchPanel;
+		}
+
+		private static StackPanel CreateNowatchesPanel()
+		{
+			var watchPanel = new StackPanel();
+			var panel = new DeparturePanel()
+			{
+				Width = 250,
+			};
+			panel.Children.Add(new TextBox() {Text = "NO CURRENT ROUTES"});
+			watchPanel.Children.Add(panel);
 			return watchPanel;
 		}
 
@@ -168,6 +193,16 @@ namespace RuterTest
 			return departurePanel;
 		}
 
+		private static DockPanel CreateNoDeparturesPanel()
+		{
+			var panel = new DeparturePanel()
+			{
+				Width = 300,
+			};
+			panel.Children.Add(new TextBox() {Text = "NO DEPARTURES"});
+			return panel;
+		}
+
 		private static TextBox CreateDestinationBox(Departure departure, Stop stop)
 		{
 			var destinationBox = new DestinationBox()
@@ -196,6 +231,34 @@ namespace RuterTest
 				Text = tmpDeparture.ToString(),
 			};
 			return timeBox;
+		}
+		
+		private void OnPointerDown(object sender, Uno.Platform.PointerEventArgs args)
+        {
+			_originalPointerPos = args.Position;
+			var panel = _scene.Children[1] as StackPanel;
+			_originalPanelPos = panel.Position;
+		}
+				
+		private void OnPointerUp(object sender, Uno.Platform.PointerEventArgs args)
+        {
+			_originalPointerPos = float2(-1);
+		}
+						
+		private void OnPointerMove(object sender, Uno.Platform.PointerEventArgs args)
+        {
+			if (_originalPointerPos.X < 0)
+				return;
+			var delta  = args.Position - _originalPointerPos;
+			var newPos = _originalPanelPos + delta;
+			newPos.Y = Math.Min(newPos.Y, 0);
+			var panel = _scene.Children[1] as StackPanel;
+			var viewport = Application.Current.GraphicsContext.Viewport;
+			newPos.X = Math.Max(newPos.X, viewport.Right - panel.DesiredSize.X);
+			newPos.X = Math.Min(newPos.X, 0);
+			newPos.Y = Math.Max(newPos.Y, viewport.Bottom - panel.DesiredSize.Y);
+			newPos.Y = Math.Min(newPos.Y, 0);
+			panel.Position = newPos;
 		}
 
 	}

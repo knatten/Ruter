@@ -49,7 +49,7 @@ namespace RuterTest
 
 		public void HandleChanged()
 		{
-			_gui.Update();
+			_gui.UpdateData();
 		}
 	}
 }
