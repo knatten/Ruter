@@ -4,7 +4,7 @@ using Uno.Graphics;
 using Uno.Scenes;
 using Uno.Content;
 using Uno.Content.Models;
-using Experimental.Net.Http;
+//using Experimental.Net.Http;
 using Experimental.Data;
 
 namespace RuterTest
@@ -25,12 +25,12 @@ namespace RuterTest
 
 		public void Update()
 		{
-			var httpClient = new HttpClient();
+			//var httpClient = new HttpClient();
 			var tmpWatch = _checkedWatch.Watch;
 			var tmpStop = tmpWatch.Stop;
 			var tmpId = tmpStop.StopId;
             var query = "http://reis.ruter.no/reisrest/realtime/getrealtimedata/" + tmpId;
-			httpClient.GetStringAsync(query, Callback);
+			//httpClient.GetStringAsync(query, Callback);
 		}
 
 		private void Callback(string content)
