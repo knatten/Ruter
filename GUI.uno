@@ -124,7 +124,6 @@ namespace RuterTest
 			}
 			if (data.CheckedWatches.Count == 0)
 			{
-				debug_log "no watches";
 				mainPanel.Children.Add(CreateNowatchesPanel());
 			}
 			return mainPanel;
