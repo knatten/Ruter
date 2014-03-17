@@ -122,6 +122,11 @@ namespace RuterTest
 			{
 				mainPanel.Children.Add(CreateWatchPanel(watch));
 			}
+			if (data.CheckedWatches.Count == 0)
+			{
+				debug_log "no watches";
+				mainPanel.Children.Add(CreateNowatchesPanel());
+			}
 			return mainPanel;
 		}
 
@@ -140,6 +145,18 @@ namespace RuterTest
 			{
 				watchPanel.Children.Add(CreateNoDeparturesPanel());
 			}
+			return watchPanel;
+		}
+
+		private static StackPanel CreateNowatchesPanel()
+		{
+			var watchPanel = new StackPanel();
+			var panel = new DeparturePanel()
+			{
+				Width = 250,
+			};
+			panel.Children.Add(new TextBox() {Text = "NO CURRENT ROUTES"});
+			watchPanel.Children.Add(panel);
 			return watchPanel;
 		}
 
