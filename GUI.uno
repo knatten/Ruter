@@ -136,6 +136,10 @@ namespace RuterTest
 			{
 				watchPanel.Children.Add(CreateDeparturePanel(departure, tmpStop));
 			}
+			if (watch.Departures.Count == 0)
+			{
+				watchPanel.Children.Add(CreateNoDeparturesPanel());
+			}
 			return watchPanel;
 		}
 
@@ -171,6 +175,16 @@ namespace RuterTest
 			departurePanel.Children.Add(new ClockImage());
 			departurePanel.Children.Add(CreateDepartureTimeBox(departure));
 			return departurePanel;
+		}
+
+		private static DockPanel CreateNoDeparturesPanel()
+		{
+			var panel = new DeparturePanel()
+			{
+				Width = 300,
+			};
+			panel.Children.Add(new TextBox() {Text = "NO DEPARTURES"});
+			return panel;
 		}
 
 		private static TextBox CreateDestinationBox(Departure departure, Stop stop)
