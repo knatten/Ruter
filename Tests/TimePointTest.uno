@@ -65,9 +65,9 @@ namespace RuterTest
 			var expected = new TimePoint(11, 18);
 			assert expected.Equals(TimePoint.FromUnix(1394532485, 0110));
 		}
-		
+
 		[Test]
-		public void ToString()
+		public void TestToString()
 		{
 			assert "13:37" == new TimePoint(13, 37).ToString();
 			assert "00:00" == new TimePoint(0, 0).ToString();

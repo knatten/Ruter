@@ -25,7 +25,7 @@ namespace RuterTest
 
 		public void Update()
 		{
-			HttpClient httpClient = new HttpClient();
+			var httpClient = new HttpClient();
 			var tmpWatch = _checkedWatch.Watch;
 			var tmpStop = tmpWatch.Stop;
 			var tmpId = tmpStop.StopId;

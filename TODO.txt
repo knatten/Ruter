@@ -4,7 +4,6 @@ Message when no current routes
 Make tutorial
 Brush up design?
 Display data age
-Mock data for Android
 
 Things that need fixing asap:
 -Http on Android
@@ -13,8 +12,3 @@ Things that need fixing asap:
 -DateTime arithmetic in JS
 -Uno UI bugs
 -Tutorials, incl. styling
--Uno.Testing does not compile on Android, abstract class a problem?
-
-Other questions:
--Why do I need to restart my computer after installing?
--Why does the installer take so long time
