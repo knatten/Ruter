@@ -2,7 +2,6 @@
 <Project>
   <References>
     <PackageReference Name="Experimental.Data" Version="0.1.0.0" />
-    <PackageReference Name="Experimental.Net.Http" Version="0.1.0.0" />
     <PackageReference Name="Uno.Content.Utilities" />
     <PackageReference Name="Uno.Scenes" />
     <PackageReference Name="Uno.Styling" Version="0.1.0.0" />
