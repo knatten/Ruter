@@ -17,6 +17,13 @@ namespace RuterTest
 		public Background()
 		{
 			Texture = tex;
+			FitToWindow();
+		}
+
+		public void FitToWindow()
+		{
+			Width = Application.Current.GraphicsContext.Viewport.Right;
+			Height = Application.Current.GraphicsContext.Viewport.Bottom;
 		}
 	}
 
@@ -86,6 +93,7 @@ namespace RuterTest
 		private readonly CurrentData _data;
 		private float2 _originalPointerPos = float2(-1);
 		private float2 _originalPanelPos;
+		private Background _background;
 
 		public GUI(CurrentData data)
 		{
@@ -93,6 +101,7 @@ namespace RuterTest
 			Uno.Application.Current.Window.PointerDown += OnPointerDown;
 			Uno.Application.Current.Window.PointerUp += OnPointerUp;
 			Uno.Application.Current.Window.PointerMove += OnPointerMove;
+			Uno.Application.Current.Window.Resize += OnResize;
 		}
 
 		public void Draw()
@@ -105,8 +114,8 @@ namespace RuterTest
 			_scene = new Scene() {
 				ClearColor = float4(0, 0, 0, 1),
 			};
-			var background = new Background();
-			_scene.Children.Add(background);
+			_background = new Background();
+			_scene.Children.Add(_background);
 			_scene.Children.Add(CreateMainPanel(_data));
 			var style = new GangnamStyle();
 			_scene.Style = style;
@@ -232,6 +241,11 @@ namespace RuterTest
 			};
 			return timeBox;
 		}
+
+		private void OnResize(object sender, EventArgs args)
+		{
+			_background.FitToWindow();
+		}
 		
 		private void OnPointerDown(object sender, Uno.Platform.PointerEventArgs args)
         {
@@ -239,12 +253,12 @@ namespace RuterTest
 			var panel = _scene.Children[1] as StackPanel;
 			_originalPanelPos = panel.Position;
 		}
-				
+
 		private void OnPointerUp(object sender, Uno.Platform.PointerEventArgs args)
         {
 			_originalPointerPos = float2(-1);
 		}
-						
+
 		private void OnPointerMove(object sender, Uno.Platform.PointerEventArgs args)
         {
 			if (_originalPointerPos.X < 0)
